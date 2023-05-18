@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "modid",
+  "version": "${version}",
+
+  "name": "LavaJumper Module Template",
+  "description": "Mod template for JavaJumper's mods",
+  "authors": [
+    "JavaJumper"
+  ],
+  "contact": {
+    "homepage": "https://javajump3r.github.io/",
+    "sources": "https://github.com/JavaJump3r/"
+  },
+
+  "license": "GPL v3",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "io.github.javajump3r.modid.ModInit"
+    ],
+    "modmenu": [
+      "io.github.javajump3r.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "modid.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.14",
+    "fabric-api": "*",
+    "minecraft": "~1.19.3",
+    "java": ">=17",
+    "lavajumper-core" :"*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/44sD49Aan3"
+      }
+    }
+  }
+}
