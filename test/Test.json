@@ -1,0 +1,98 @@
+[
+  {
+    "circleSlice": {
+      "startAngle": {
+        "radianAngle": 0.0
+      },
+      "endAngle": {
+        "radianAngle": 1.5707964
+      },
+      "midAngle": {
+        "radianAngle": 0.7853982
+      }
+    },
+    "name": "Empty action",
+    "color": -9069439,
+    "onLeftClick": {
+      "targetKeyBindingID": "test.key.value.0",
+      "hold": false
+    },
+    "onRightClick": {},
+    "icon": {
+      "namespace": "minecraft",
+      "path": "textures/item/diamond.png"
+    }
+  },
+  {
+    "circleSlice": {
+      "startAngle": {
+        "radianAngle": 1.5707964
+      },
+      "endAngle": {
+        "radianAngle": 3.1415927
+      },
+      "midAngle": {
+        "radianAngle": 2.3561945
+      }
+    },
+    "name": "Empty action",
+    "color": -5234194,
+    "onLeftClick": {
+      "targetKeyBindingID": "test.key.value.1",
+      "hold": false
+    },
+    "onRightClick": {},
+    "icon": {
+      "namespace": "minecraft",
+      "path": "textures/item/diamond.png"
+    }
+  },
+  {
+    "circleSlice": {
+      "startAngle": {
+        "radianAngle": 3.1415927
+      },
+      "endAngle": {
+        "radianAngle": 4.712389
+      },
+      "midAngle": {
+        "radianAngle": 3.926991
+      }
+    },
+    "name": "Empty action",
+    "color": -8081619,
+    "onLeftClick": {
+      "targetKeyBindingID": "test.key.value.2",
+      "hold": false
+    },
+    "onRightClick": {},
+    "icon": {
+      "namespace": "minecraft",
+      "path": "textures/item/diamond.png"
+    }
+  },
+  {
+    "circleSlice": {
+      "startAngle": {
+        "radianAngle": 4.712389
+      },
+      "endAngle": {
+        "radianAngle": 0.0
+      },
+      "midAngle": {
+        "radianAngle": 5.4977875
+      }
+    },
+    "name": "Empty action",
+    "color": -8825872,
+    "onLeftClick": {
+      "targetKeyBindingID": "test.key.value.3",
+      "hold": false
+    },
+    "onRightClick": {},
+    "icon": {
+      "namespace": "minecraft",
+      "path": "textures/item/diamond.png"
+    }
+  }
+]

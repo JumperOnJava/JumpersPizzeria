@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "jjpizza",
   "version": "${version}",
 
-  "name": "LavaJumper Module Template",
-  "description": "Mod template for JavaJumper's mods",
+  "name": "Jumper's Pizzeria",
+  "description": "Adds action pizza menu that allows to bind different actions to them (like keybinds, chat messages)",
   "authors": [
     "JavaJumper"
   ],
@@ -14,25 +14,21 @@
   },
 
   "license": "GPL v3",
-  "icon": "assets/modid/icon.png",
-
+  "icon": "assets/jjpizza/icon.png",
+  "mixins": [
+    "jjpizza.mixins.json"
+  ],
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.github.javajump3r.modid.ModInit"
-    ],
-    "modmenu": [
-      "io.github.javajump3r.ModMenuIntegration"
+      "io.github.JumperOnJava.jjpizza.OpenPizzeria"
     ]
   },
-  "mixins": [
-    "modid.mixins.json"
-  ],
-
+  "accessWidener": "jjpizza.accesswidener",
   "depends": {
     "fabricloader": ">=0.14.14",
     "fabric-api": "*",
-    "minecraft": "~1.19.3",
+    "minecraft": "1.19.*",
     "java": ">=17",
     "lavajumper-core" :"*"
   },

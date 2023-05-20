@@ -1,0 +1,13 @@
+{
+  "jjpizza.actions.KeybindingActionProvider": "Keybind",
+  "jjpizza.actions.NullActionProvider": "No action",
+  "jjpizza.keybind.hold.off": "Hold: Off",
+  "jjpizza.keybind.hold.on": "Hold: On",
+  "jjpizza.runnable.color.alpha": "Alpha",
+  "jjpizza.runnable.color.blue": "Blue",
+  "jjpizza.runnable.color.green": "Green",
+  "jjpizza.runnable.color.red": "Red",
+  "jjpizza.runnable.endangle": "End angle",
+  "jjpizza.runnable.startangle": "Start angle",
+  "jjpizza.screen.openconfig": "Configure"
+}
