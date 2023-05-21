@@ -1,5 +1,6 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
 
+import com.google.gson.annotations.Expose;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.lavajumper.common.Translation;
@@ -9,17 +10,15 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.text.Text;
-import org.spongepowered.include.com.google.gson.annotations.Expose;
 import java.util.*;
 
 import static io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry.gap;
 
 public class KeybindingActionProvider implements ConfigurableRunnable {
     public static Set<String> awaitingMatch = new HashSet<>();
-    @Expose
     private String targetKeyBindingID = null;
     private boolean hold = false;
-    private ConfigurablePizzaSlice parent;
+    private transient ConfigurablePizzaSlice parent;
 
     public KeybindingActionProvider(Boolean isReal){}
     private KeyBinding getTargetKeyBinding(){

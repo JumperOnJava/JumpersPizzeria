@@ -13,9 +13,8 @@ import static io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionType
 
 
 public class ChatMessageActionProvider implements ConfigurableRunnable {
-    @Expose
     private String message="Hello, world!";
-    private ConfigurablePizzaSlice parent;
+    private transient ConfigurablePizzaSlice parent;
 
     public ChatMessageActionProvider(Boolean isReal) {
     }

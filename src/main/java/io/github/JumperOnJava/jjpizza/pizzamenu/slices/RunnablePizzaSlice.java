@@ -47,7 +47,7 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
     public void setManager(PizzaManager manager){
         this.manager=manager;
     }
-    private PizzaManager manager;
+    transient private PizzaManager manager;
 
 
     public RunnablePizzaSlice(String name, CircleSlice circleSlice, PizzaManager manager){
