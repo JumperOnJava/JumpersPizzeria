@@ -1,19 +1,16 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actions;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices;
 
 import com.google.gson.annotations.Expose;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders.ActionTypes;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders.ConfigurableRunnable;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders.NullActionProvider;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders.NullScrollProvider;
-import io.github.javajumper.lavajumper.common.Translation;
-import io.github.javajumper.lavajumper.common.actiontext.ActionTextRenderer;
-import io.github.javajumper.lavajumper.datatypes.Angle;
-import io.github.javajumper.lavajumper.datatypes.CircleSlice;
-import io.github.javajumper.lavajumper.gui.SubScreen;
-import io.github.javajumper.lavajumper.gui.widgets.SliderWidget;
+import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
+import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.NullActionProvider;
+import io.github.JumperOnJava.lavajumper.common.Translation;
+import io.github.JumperOnJava.lavajumper.datatypes.Angle;
+import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
+import io.github.JumperOnJava.lavajumper.gui.SubScreen;
+import io.github.JumperOnJava.lavajumper.gui.widgets.SliderWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -26,7 +23,7 @@ import net.minecraft.util.math.ColorHelper;
 import java.util.Random;
 import java.util.function.Consumer;
 
-import static io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders.ActionTypes.gap;
+import static io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry.gap;
 
 
 public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
@@ -43,14 +40,24 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
     @Expose
     private Identifier icon = new Identifier("textures/item/diamond.png");
 
+    @Override
+    public PizzaManager getManager() {
+        return manager;
+    }
+    public void setManager(PizzaManager manager){
+        this.manager=manager;
+    }
+    private PizzaManager manager;
 
-    public RunnablePizzaSlice(String name, CircleSlice circleSlice){
+
+    public RunnablePizzaSlice(String name, CircleSlice circleSlice, PizzaManager manager){
         this.name=name;
         setSlice(circleSlice);
 
         var r = new Random();
         this.color = ColorHelper.Argb.getArgb(255,r.nextInt(255),r.nextInt(255),r.nextInt(255));
         //ActionTextRenderer.sendChatMessage(Integer.toHexString(this.color));
+        this.manager = manager;
     }
 
     @Override
@@ -226,18 +233,18 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
             protected void init() {
                 var leftAction = new SubScreen();
                 leftAction.init(gap / 2, gap / 2 + 20, this.width / 2 - gap / 2, this.height - gap / 2 - 40);
-                leftAction.setScreen(pizzaAction.onLeftClick.getConfigurerScreen());
+                leftAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
                 addDrawableChild(leftAction);
 
 
                 var leftCycleButton = new ButtonWidget.Builder(Text.empty(),button -> {
-                    pizzaAction.onLeftClick = ActionTypes.getNextFactoryForType(pizzaAction.onLeftClick).apply(true);
+                    pizzaAction.onLeftClick = pizzaAction.manager.actionTypeRegistry.getNextFactoryForType(pizzaAction.onLeftClick).apply(true);
                     setButtonType(button,pizzaAction.onLeftClick);
-                    leftAction.setScreen(pizzaAction.onLeftClick.getConfigurerScreen());
+                    leftAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
                 }).size(width/2-gap/2,20).position(gap/2,gap/2).build();
 
                 setButtonType(leftCycleButton,pizzaAction.onLeftClick);
-                leftAction.setScreen(pizzaAction.onLeftClick.getConfigurerScreen());
+                leftAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
 
                 addDrawableChild(leftCycleButton);
 
@@ -245,18 +252,18 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
 
                 var rightAction = new SubScreen();
                 rightAction.init(this.width / 2 + gap / 2, gap / 2 + 20, this.width / 2 - gap / 2, this.height - gap / 2 - 40);
-                rightAction.setScreen(pizzaAction.onLeftClick.getConfigurerScreen());
+                rightAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
                 addDrawableChild(rightAction);
 
 
                 var rightCycleButton = new ButtonWidget.Builder(Text.empty(),button -> {
-                    pizzaAction.onRightClick = ActionTypes.getNextFactoryForType(pizzaAction.onRightClick).apply(true);
+                    pizzaAction.onRightClick = pizzaAction.manager.actionTypeRegistry.getNextFactoryForType(pizzaAction.onRightClick).apply(true);
                     setButtonType(button,pizzaAction.onRightClick);
-                    rightAction.setScreen(pizzaAction.onRightClick.getConfigurerScreen());
+                    rightAction.setScreen(pizzaAction.onRightClick.getConfiguratorScreen());
                 }).size(width/2-gap/2,20).position(width / 2 + gap/2,gap/2).build();
 
                 setButtonType(rightCycleButton,pizzaAction.onRightClick);
-                rightAction.setScreen(pizzaAction.onRightClick.getConfigurerScreen());
+                rightAction.setScreen(pizzaAction.onRightClick.getConfiguratorScreen());
 
                 addDrawableChild(rightCycleButton);
             }

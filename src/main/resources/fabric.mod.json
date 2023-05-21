@@ -21,7 +21,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.github.JumperOnJava.jjpizza.OpenPizzeria"
+      "io.github.JumperOnJava.jjpizza.PizzeriaInit"
     ]
   },
   "accessWidener": "jjpizza.accesswidener",
@@ -30,7 +30,7 @@
     "fabric-api": "*",
     "minecraft": "1.19.*",
     "java": ">=17",
-    "lavajumper-core" :"*"
+    "lavajumper-core" :">=1.2.0"
   },
   "custom": {
     "modmenu": {

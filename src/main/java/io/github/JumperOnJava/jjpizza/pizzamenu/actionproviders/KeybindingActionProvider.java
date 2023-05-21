@@ -1,7 +1,8 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders;
+package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
 
-import io.github.javajumper.lavajumper.common.Translation;
-import io.github.javajumper.lavajumper.gui.widgets.ScrollListWidget;
+import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.lavajumper.common.Translation;
+import io.github.JumperOnJava.lavajumper.gui.widgets.ScrollListWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -10,9 +11,9 @@ import net.minecraft.text.Text;
 import org.spongepowered.include.com.google.gson.annotations.Expose;
 import java.util.*;
 
-import static io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders.ActionTypes.gap;
+import static io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry.gap;
 
-public class KeybindingActionProvider implements ConfigurableRunnable{
+public class KeybindingActionProvider implements ConfigurableRunnable {
     public static Set<String> awaitingMatch = new HashSet<>();
     @Expose
     private String targetKeyBindingID = null;
@@ -26,7 +27,7 @@ public class KeybindingActionProvider implements ConfigurableRunnable{
         return null;
     }
     @Override
-    public Screen getConfigurerScreen() {
+    public Screen getConfiguratorScreen() {
         return new KeyBindingEditScreen(this);
     }
     @Override

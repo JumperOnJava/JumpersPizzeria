@@ -9,5 +9,7 @@
   "jjpizza.runnable.color.red": "Red",
   "jjpizza.runnable.endangle": "End angle",
   "jjpizza.runnable.startangle": "Start angle",
-  "jjpizza.screen.openconfig": "Configure"
+  "jjpizza.screen.openconfig": "Configure",
+  "jjpizza.actions.ChatMessageActionProvider": "Chat Message",
+  "jjpizza.chat.messagehere": "Chat message"
 }

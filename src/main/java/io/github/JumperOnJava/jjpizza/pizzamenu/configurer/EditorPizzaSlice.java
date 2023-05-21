@@ -1,27 +1,25 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actions;
+package io.github.JumperOnJava.jjpizza.pizzamenu.configurer;
 
-import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.ConfigActionApplier;
-import io.github.javajumper.lavajumper.datatypes.CircleSlice;
-import io.github.javajumper.lavajumper.gui.widgets.PizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
+import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
+import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class ConfiguringPizzaSlice implements PizzaSlice {
+public class EditorPizzaSlice implements PizzaSlice {
     private final ConfigurablePizzaSlice targetAction;
     private final Consumer<Screen> clickCallback;
     private final Runnable updateCallback;
     private final Consumer<ConfigurablePizzaSlice> rightClickCallback;
-    private final Consumer<PizzaSlice> removeCallback;
+    private final Consumer<ConfigurablePizzaSlice> removeCallback;
 
-    public ConfiguringPizzaSlice(ConfigurablePizzaSlice targetAction, ConfigActionApplier athing){
+    public EditorPizzaSlice(ConfigurablePizzaSlice targetAction, ConfigActionApplier athing){
         this.targetAction = targetAction;
         this.clickCallback = athing::setSliceConfigScreen;
-        this.rightClickCallback = athing::addEmptySlice;
+        this.rightClickCallback = athing::splitSlice;
         this.updateCallback = athing::rebuildSlices;
         this.removeCallback = athing::removeSlice;
     }

@@ -1,20 +1,16 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders;
+package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.Expose;
+import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.ColorHelper;
-
-import java.util.Random;
 
 public class NullActionProvider implements ConfigurableRunnable {
     public NullActionProvider(boolean isReal){}
     @Override
-    public Screen getConfigurerScreen() {
+    public Screen getConfiguratorScreen() {
         return new Screen(Text.empty()) {
             public void render(MatrixStack matrixStack,int mx,int my,float d){
                 fill(matrixStack,0,0,width,height, 0x3F220000);

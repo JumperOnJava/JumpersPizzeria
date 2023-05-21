@@ -1,14 +1,13 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actions.RunnablePizzaSlice;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders.ActionTypes;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.RunnablePizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry;
 import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.EntirePizzaConfigurator;
-import io.github.javajumper.lavajumper.common.Binder;
-import io.github.javajumper.lavajumper.common.FileReadWrite;
-import io.github.javajumper.lavajumper.datatypes.CircleSlice;
-import io.github.javajumper.lavajumper.gui.widgets.PizzaWidget;
+import io.github.JumperOnJava.lavajumper.common.Binder;
+import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
+import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -18,44 +17,47 @@ import java.util.LinkedList;
 import java.util.*;
 
 public class PizzaManager {
-    List<RunnablePizzaSlice> actions = new LinkedList<>();
-
-    private static PizzaManager mainManager;
-    public static PizzaManager getManager(){
-        if(mainManager==null)
-            mainManager=new PizzaManager();
-        return mainManager;
-    }
-    private PizzaManager(){
+    List<RunnablePizzaSlice> actions = new ArrayList<>();
+    public ActionTypeRegistry actionTypeRegistry = new ActionTypeRegistry();
+    public PizzaManager(){
         Binder.addBind("Open Pizza menu",-1,this::openPizza);
         actions = load();
     }
 
-    public PizzaWidget.PizzaConfiguration getSlices() {
-        return new PizzaWidget.PizzaConfiguration(actions);
-    }
-
     public void openPizza(MinecraftClient client){
         //this.slices = new PizzaConfiguration(actions);
-        client.setScreen(new PizzaScreen(getSlices(),getBuilderScreen()));
+        client.setScreen(new PizzaScreen(actions,getBuilderScreen()));
     }
 
     public Screen getBuilderScreen(){
-        var configurator = new EntirePizzaConfigurator(new PizzaWidget.PizzaConfiguration(actions),this::setSlices);
+        var configurator = new EntirePizzaConfigurator(new LinkedList<>(actions),this::setSlices);
         return configurator.configuratorScreen;
     }
     public void save(){
-        FileReadWrite.write(getConfigFile(),ActionTypes.getGson().toJson(actions));
+        /*var l = new LinkedList<RunnablePizzaSlice>();
+        actions.forEach(a->{
+            if(a instanceof RunnablePizzaSlice r)
+                l.add(r);
+        });
+        var tt = new TypeToken<LinkedList<RunnablePizzaSlice>>(){}.getType();*/
+        try{
+            FileReadWrite.write(getConfigFile(), actionTypeRegistry.getGson().toJson(actions));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
     public List<RunnablePizzaSlice> load(){
         if(readConfig().equals("")){
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(0,.25f)));
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.25f,.5f)));
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.5f,.75f)));
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.75f,1f)));
+            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(0,.25f),this));
+            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.25f,.5f),this));
+            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.5f,.75f),this));
+            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.75f,1f),this));
             save();
         }
-        return ActionTypes.getGson().fromJson(readConfig(),new TypeToken<LinkedList<RunnablePizzaSlice>>(){}.getType());
+        List<RunnablePizzaSlice> l = actionTypeRegistry.getGson().fromJson(readConfig(),new TypeToken<ArrayList<RunnablePizzaSlice>>(){}.getType());
+        l.forEach(s->s.setManager(this));
+        return l;
     }
 
     private String readConfig() {
@@ -66,9 +68,10 @@ public class PizzaManager {
         return FabricLoader.getInstance().getConfigDir().resolve("jjpizza/main.json").toFile();
     }
 
-    private void setSlices(PizzaWidget.PizzaConfiguration configuration) {
+    private void setSlices(List<ConfigurablePizzaSlice> configuration) {
         actions.clear();
-        configuration.slices.forEach(pizzaSlice -> {if(pizzaSlice instanceof RunnablePizzaSlice runnablePizzaSlice) actions.add(runnablePizzaSlice);});
+        configuration.forEach(pizzaSlice -> {if(pizzaSlice instanceof RunnablePizzaSlice runnablePizzaSlice) actions.add(runnablePizzaSlice);});
+        save();
     }
 }
 

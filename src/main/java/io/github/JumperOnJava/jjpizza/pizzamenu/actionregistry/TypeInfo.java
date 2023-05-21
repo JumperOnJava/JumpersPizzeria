@@ -1,11 +1,11 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actions.actionproviders;
+package io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry;
 
 import com.google.gson.TypeAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
-public class TypeInfo implements Function<Boolean,ConfigurableRunnable>, Comparable<TypeInfo> {
+
+public class TypeInfo implements Function<Boolean, ConfigurableRunnable>, Comparable<TypeInfo> {
     private final Function<Boolean,ConfigurableRunnable> factory;
     private final int hashCode;
     public final Class<? extends ConfigurableRunnable> type;
