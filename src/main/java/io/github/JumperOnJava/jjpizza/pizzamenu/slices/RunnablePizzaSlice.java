@@ -102,7 +102,7 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
     public Screen getConfiguratorScreen(Runnable updateCallback) {
         return new RunnableConfigurator(this,updateCallback);
     }
-    static class RunnableConfigurator extends Screen{
+    public static class RunnableConfigurator extends Screen{
         RunnablePizzaSlice pizzaAction;
         Runnable updateCallback;
         public RunnableConfigurator(RunnablePizzaSlice pizzaAction, Runnable updateCallback){
@@ -231,6 +231,7 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
             }
             @Override
             protected void init() {
+
                 var leftAction = new SubScreen();
                 leftAction.init(gap / 2, gap / 2 + 20, this.width / 2 - gap / 2, this.height - gap / 2 - 40);
                 leftAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
@@ -241,6 +242,7 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
                     pizzaAction.onLeftClick = pizzaAction.manager.actionTypeRegistry.getNextFactoryForType(pizzaAction.onLeftClick).apply(true);
                     setButtonType(button,pizzaAction.onLeftClick);
                     leftAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
+                    pizzaAction.onLeftClick.setParent(pizzaAction);
                 }).size(width/2-gap/2,20).position(gap/2,gap/2).build();
 
                 setButtonType(leftCycleButton,pizzaAction.onLeftClick);
@@ -260,6 +262,7 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
                     pizzaAction.onRightClick = pizzaAction.manager.actionTypeRegistry.getNextFactoryForType(pizzaAction.onRightClick).apply(true);
                     setButtonType(button,pizzaAction.onRightClick);
                     rightAction.setScreen(pizzaAction.onRightClick.getConfiguratorScreen());
+                    pizzaAction.onRightClick.setParent(pizzaAction);
                 }).size(width/2-gap/2,20).position(width / 2 + gap/2,gap/2).build();
 
                 setButtonType(rightCycleButton,pizzaAction.onRightClick);
@@ -268,7 +271,7 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
                 addDrawableChild(rightCycleButton);
             }
         }
-        private static void setButtonType(ButtonWidget button, ConfigurableRunnable obj){
+        public static void setButtonType(ButtonWidget button, ConfigurableRunnable obj){
             button.setMessage(Translation.get("jjpizza.actions."+obj.getClass().getSimpleName()));
         }
     }

@@ -1,6 +1,7 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
 
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
@@ -9,6 +10,9 @@ import net.minecraft.text.Text;
 
 public class NullActionProvider implements ConfigurableRunnable {
     public NullActionProvider(boolean isReal){}
+    @Override
+    public void setParent(ConfigurablePizzaSlice pizzaSlice) {}
+
     @Override
     public Screen getConfiguratorScreen() {
         return new Screen(Text.empty()) {

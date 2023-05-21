@@ -87,7 +87,7 @@ public class ActionTypeRegistry extends Registry<TypeInfo> {
             json.addProperty("RunnableType",src.getClass().getName());
             var elm = context.serialize(src,src.getClass());
             json.add("Object",elm);
-            LavaJumper.log("serializing"+t++);
+            LavaJumper.log("serializing");
             return json;
         }
     }

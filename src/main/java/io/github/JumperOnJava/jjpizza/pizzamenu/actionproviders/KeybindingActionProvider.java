@@ -1,6 +1,7 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
 
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.gui.widgets.ScrollListWidget;
 import net.minecraft.client.MinecraftClient;
@@ -18,6 +19,8 @@ public class KeybindingActionProvider implements ConfigurableRunnable {
     @Expose
     private String targetKeyBindingID = null;
     private boolean hold = false;
+    private ConfigurablePizzaSlice parent;
+
     public KeybindingActionProvider(Boolean isReal){}
     private KeyBinding getTargetKeyBinding(){
             for(var kb : getKeyBindings()){
@@ -26,6 +29,12 @@ public class KeybindingActionProvider implements ConfigurableRunnable {
             }
         return null;
     }
+
+    @Override
+    public void setParent(ConfigurablePizzaSlice pizzaSlice) {
+        this.parent=pizzaSlice;
+    }
+
     @Override
     public Screen getConfiguratorScreen() {
         return new KeyBindingEditScreen(this);

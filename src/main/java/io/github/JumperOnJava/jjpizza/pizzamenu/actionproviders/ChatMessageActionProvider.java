@@ -2,6 +2,7 @@ package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
 
 import com.google.gson.annotations.Expose;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -14,8 +15,13 @@ import static io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionType
 public class ChatMessageActionProvider implements ConfigurableRunnable {
     @Expose
     private String message="Hello, world!";
+    private ConfigurablePizzaSlice parent;
 
     public ChatMessageActionProvider(Boolean isReal) {
+    }
+
+    public void setParent(ConfigurablePizzaSlice pizzaSlice) {
+        this.parent = pizzaSlice;
     }
 
     @Override
