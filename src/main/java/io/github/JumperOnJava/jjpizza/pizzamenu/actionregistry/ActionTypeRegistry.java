@@ -3,7 +3,6 @@ package io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry;
 import com.google.gson.*;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
-import io.github.JumperOnJava.jjpizza.pizzamenu.Registry;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.ChatMessageActionProvider;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.KeybindingActionProvider;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.NullActionProvider;
@@ -13,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.*;
 import java.util.function.Function;
 
-public class ActionTypeRegistry extends Registry<TypeInfo> {
+public class ActionTypeRegistry{
     public static final int gap = 4;
     public ActionTypeRegistry(){
         typeFactories = new TreeSet<>();

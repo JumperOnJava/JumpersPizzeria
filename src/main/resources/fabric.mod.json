@@ -9,8 +9,8 @@
     "JavaJumper"
   ],
   "contact": {
-    "homepage": "https://javajump3r.github.io/",
-    "sources": "https://github.com/JavaJump3r/"
+    "homepage": "https://jumperonjava.github.io/",
+    "sources": "https://github.com/JumperOnJava/JumpersPizzeria"
   },
 
   "license": "GPL v3",
@@ -21,7 +21,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.github.JumperOnJava.jjpizza.PizzeriaInit"
+      "io.github.JumperOnJava.jjpizza.PizzeriaApi"
     ]
   },
   "accessWidener": "jjpizza.accesswidener",

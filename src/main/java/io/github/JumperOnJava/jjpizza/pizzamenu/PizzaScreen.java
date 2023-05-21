@@ -1,6 +1,5 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu;
 
-import io.github.JumperOnJava.jjpizza.PizzeriaInit;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaWidget;

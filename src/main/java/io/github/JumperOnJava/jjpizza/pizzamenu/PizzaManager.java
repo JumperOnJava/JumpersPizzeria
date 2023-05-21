@@ -20,7 +20,7 @@ public class PizzaManager {
     List<RunnablePizzaSlice> actions = new ArrayList<>();
     public ActionTypeRegistry actionTypeRegistry = new ActionTypeRegistry();
     public PizzaManager(){
-        Binder.addBind("Open Pizza menu",-1,this::openPizza);
+        Binder.addBind("Open Pizza Menu",-1,this::openPizza);
         actions = load();
     }
 
