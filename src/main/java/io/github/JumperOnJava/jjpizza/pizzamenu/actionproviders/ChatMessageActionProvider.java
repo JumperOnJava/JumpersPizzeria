@@ -45,6 +45,7 @@ public class ChatMessageActionProvider implements ConfigurableRunnable {
         }
         protected void init(){
             var field = new TextFieldWidget(MinecraftClient.getInstance().textRenderer,gap/2,gap/2,width-gap,20, Translation.get("jjpizza.chat.messagehere"));
+            field.setMaxLength(255);
             field.setText(target.message);
             field.setChangedListener(s->target.message=s);
             addDrawableChild(field);
