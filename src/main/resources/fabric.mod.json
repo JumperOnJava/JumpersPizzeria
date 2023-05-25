@@ -30,7 +30,7 @@
     "fabric-api": "*",
     "minecraft": "1.19.4",
     "java": ">=17",
-    "lavajumper-core" :">=1.2.0"
+    "lavajumper-core" :">=1.2.1"
   },
   "custom": {
     "modmenu": {

@@ -4,8 +4,10 @@ import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaWidget;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.Keyboard;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import java.util.*;
@@ -14,10 +16,12 @@ import net.minecraft.text.Text;
 public class PizzaScreen extends Screen {
     private final List<? extends PizzaSlice> slices;
     private final Screen configuratorScreen;
+    private final PizzaManager manager;
     public PizzaWidget pizzaWidget;
     //ImmutableSlicesList slices;
-    public PizzaScreen(List<? extends PizzaSlice> slices, Screen configuratorScreen) {
+    public PizzaScreen(List<? extends PizzaSlice> slices, Screen configuratorScreen,PizzaManager manager) {
         super(Text.empty());
+        this.manager = manager;
         this.slices = slices;
         this.configuratorScreen = configuratorScreen;
     }
@@ -38,6 +42,14 @@ public class PizzaScreen extends Screen {
             }).position(10,54).width(70).build());*/
 
         }
+    }
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if(manager.pizzaKeybind.matchesKey(keyCode,scanCode)) {
+            this.close();
+            return true;
+        }
+        return super.keyReleased(keyCode, scanCode, modifiers);
     }
 
     @Override

@@ -5,12 +5,13 @@ import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.RunnablePizzaSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry;
 import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.EntirePizzaConfigurator;
-import io.github.JumperOnJava.lavajumper.common.Binder;
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
+import io.github.JumperOnJava.lavajumper.common.Binder;
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.option.KeyBinding;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -18,15 +19,16 @@ import java.util.*;
 
 public class PizzaManager {
     List<RunnablePizzaSlice> actions = new ArrayList<>();
+    public final KeyBinding pizzaKeybind;
     public ActionTypeRegistry actionTypeRegistry = new ActionTypeRegistry();
     public PizzaManager(){
-        Binder.addBind("Open Pizza Menu",-1,this::openPizza);
+        pizzaKeybind = Binder.addBind("Open Pizza Menu",-1,this::openPizza);
         actions = load();
     }
 
     public void openPizza(MinecraftClient client){
         //this.slices = new PizzaConfiguration(actions);
-        client.setScreen(new PizzaScreen(actions,getBuilderScreen()));
+        client.setScreen(new PizzaScreen(actions,getBuilderScreen(),this));
     }
 
     public Screen getBuilderScreen(){
