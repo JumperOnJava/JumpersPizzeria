@@ -4,12 +4,14 @@ import com.google.gson.annotations.Expose;
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.NullActionProvider;
+import io.github.JumperOnJava.lavajumper.LavaJumper;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.datatypes.Angle;
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.SubScreen;
 import io.github.JumperOnJava.lavajumper.gui.widgets.SliderWidget;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
@@ -53,7 +55,6 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
     public RunnablePizzaSlice(String name, CircleSlice circleSlice, PizzaManager manager){
         this.name=name;
         setSlice(circleSlice);
-
         var r = new Random();
         this.color = ColorHelper.Argb.getArgb(255,r.nextInt(255),r.nextInt(255),r.nextInt(255));
         //ActionTextRenderer.sendChatMessage(Integer.toHexString(this.color));
@@ -216,9 +217,9 @@ public class RunnablePizzaSlice implements ConfigurablePizzaSlice {
         }
 
         @Override
-        public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta) {
-            renderBackground(matrixStack);
-            super.render(matrixStack, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            renderBackground(context);
+            super.render(context, mouseX, mouseY, delta);
         }
         private void update(){
             updateCallback.run();

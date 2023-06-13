@@ -4,6 +4,7 @@ import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.SubScreen;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaWidget;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
@@ -89,9 +90,9 @@ public class EntirePizzaConfiguratorScreen extends Screen {
     public void setSliceConfiguratorScreen(Screen screen){
         sliceConfiguratorSubScreen.setScreen(screen);
     }
-    public void render(MatrixStack matrixStack,int mouseX,int mouseY,float delta){
-        renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, delta);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta){
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
     }
 
 }

@@ -6,6 +6,7 @@ import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaWidget;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Keyboard;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -46,6 +47,9 @@ public class PizzaScreen extends Screen {
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if(manager.pizzaKeybind.matchesKey(keyCode,scanCode)) {
+            var x = client.mouse.getX()/client.options.getGuiScale().getValue();
+            var y = client.mouse.getY()/client.options.getGuiScale().getValue();
+            this.mouseClicked(x,y,0);
             this.close();
             return true;
         }
@@ -53,8 +57,8 @@ public class PizzaScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta) {
-        renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, delta);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
     }
 }
