@@ -44,18 +44,33 @@ public class PizzaScreen extends Screen {
 
         }
     }
+    private boolean releasedOnce=false;
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if(manager.pizzaKeybind.matchesKey(keyCode,scanCode)) {
-            var x = client.mouse.getX()/client.options.getGuiScale().getValue();
-            var y = client.mouse.getY()/client.options.getGuiScale().getValue();
-            this.mouseClicked(x,y,0);
-            this.close();
-            return true;
+    public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
+        if(manager.pizzaKeybind.matchesKey(keyCode,scanCode) && !releasedOnce) {
+            clickAtMouse();
         }
+        if(!releasedOnce)
+            releasedOnce = true;
         return super.keyReleased(keyCode, scanCode, modifiers);
     }
 
+    private void clickAtMouse() {
+        var x = client.mouse.getX()/client.options.getGuiScale().getValue();
+        var y = client.mouse.getY()/client.options.getGuiScale().getValue();
+        this.mouseClicked(x,y,0);
+    }
+
+    public boolean keyPressed(int keyCode,int scanCode, int modifiers){
+        if(!releasedOnce)
+            return false;
+        if(manager.pizzaKeybind.matchesKey(keyCode,scanCode)){
+            clickAtMouse();
+            this.close();
+            return true;
+        }
+        return super.keyPressed(keyCode,scanCode,modifiers);
+    }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context);
