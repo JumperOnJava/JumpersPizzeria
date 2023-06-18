@@ -79,7 +79,8 @@ public class KeybindingActionProvider implements ConfigurableRunnable {
             for(var keybind : target.getKeyBindings()){
                 var listEntry = new ScrollListWidget.ScrollListEntry();
                 listWidget.addEntry(listEntry);
-                var activateButton = new ButtonWidget.Builder(Text.translatable(keybind.getTranslationKey()),b->{
+                Text buttonText = Text.translatable(keybind.getCategory()).append(" : ").append(Text.translatable(keybind.getTranslationKey()));
+                var activateButton = new ButtonWidget.Builder(buttonText,b->{
                     listEntry.setMeActive();
                     target.targetKeyBindingID = keybind.getTranslationKey();
                 }).width(width-gap).build();
