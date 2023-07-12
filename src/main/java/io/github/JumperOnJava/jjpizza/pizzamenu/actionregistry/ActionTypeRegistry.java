@@ -5,8 +5,10 @@ import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.ChatMessageActionProvider;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.KeybindingActionProvider;
+import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.MalilibActionProvider;
 import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.NullActionProvider;
 import io.github.JumperOnJava.lavajumper.LavaJumper;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.lang.reflect.Type;
 import java.util.*;
@@ -17,6 +19,8 @@ public class ActionTypeRegistry{
     public ActionTypeRegistry(){
         typeFactories = new TreeSet<>();
         addActionType(KeybindingActionProvider::new,null);
+        if(FabricLoader.getInstance().isModLoaded("malilib"))
+        addActionType(MalilibActionProvider::new,null);
         addActionType(NullActionProvider::new,null);
         addActionType(ChatMessageActionProvider::new,null);
     }

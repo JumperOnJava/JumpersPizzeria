@@ -8,6 +8,6 @@ public interface ConfigurableRunnable extends Runnable {
      * ignore if you dont need parent slice
      * @param configurableRunnable
      */
-    void setParent(ConfigurablePizzaSlice configurableRunnable);
+    default void setParent(ConfigurablePizzaSlice configurableRunnable){};
     Screen getConfiguratorScreen();
 }
