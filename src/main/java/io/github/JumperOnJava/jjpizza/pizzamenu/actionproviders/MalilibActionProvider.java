@@ -108,9 +108,10 @@ public class MalilibActionProvider implements ConfigurableRunnable, TargetKeybin
         }
 
         public boolean matches(String search) {
-            return category.getModName().contains(search) ||
-                    category.getCategory().contains(search) ||
-                    hotkey.getName().contains(search);
+            search=search.toLowerCase();
+            return category.getModName().toLowerCase().contains(search) ||
+                    category.getCategory().toLowerCase().contains(search) ||
+                    hotkey.getName().toLowerCase().contains(search);
         }
     }
 

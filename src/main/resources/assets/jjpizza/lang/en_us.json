@@ -11,5 +11,9 @@
   "jjpizza.runnable.startangle": "Start angle",
   "jjpizza.screen.openconfig": "Configure",
   "jjpizza.actions.ChatMessageActionProvider": "Chat Message",
-  "jjpizza.chat.messagehere": "Chat message"
+  "jjpizza.chat.messagehere": "Chat message",
+  "jjpizza.keybind.mali.hold.PRESS": "Press",
+  "jjpizza.actions.MalilibActionProvider": "Malilib Keybind",
+  "jjpizza.keybind.mali.hold.BOTH": "Press and release",
+  "jjpizza.keybind.mali.hold.RELEASE": "Release"
 }

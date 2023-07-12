@@ -104,8 +104,9 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
 
         @Override
         public boolean matches(String search) {
-            return keybind.getTranslationKey().contains(search) ||
-                    I18n.translate(keybind.getTranslationKey()).contains(search);
+            search=search.toLowerCase();
+            return keybind.getTranslationKey().toLowerCase().contains(search) ||
+                    I18n.translate(keybind.getTranslationKey()).toLowerCase().contains(search);
         }
     }
 
@@ -116,11 +117,24 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
             this.target = target;
         }
         public void init(){
-
-            var searchBox = new TextFieldWidget(client.textRenderer,2,2,width-4,20,Text.empty());
             var listWidget = new ScrollListWidget(client,width,height-20,24,22);
+            var searchBox = new TextFieldWidget(client.textRenderer,2,2,width-4,20,Text.empty());
+            searchBox.setChangedListener(t -> rebuildList(listWidget,t));
+            addDrawableChild(searchBox);
             addDrawableChild(listWidget);
+            rebuildList(listWidget,"");
+            var holdModeButton = new ButtonWidget.Builder(target.getHoldText(),this::holdButton)
+                    .size(width-gap/2,20)
+                    .position(0,height-20-gap/2).build();
+            addDrawableChild(holdModeButton);
+        }
+
+        private void rebuildList(ScrollListWidget listWidget, String s) {
+            listWidget.children().clear();
+            listWidget.setScrollAmount(0);
             for(TargetKeybind keybind : target.getKeyBindings()){
+                if(!keybind.matches(s))
+                    continue;
                 var listEntry = new ScrollListWidget.ScrollListEntry();
                 listWidget.addEntry(listEntry);
                 Text buttonText = keybind.getButtonText();
@@ -132,10 +146,6 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
                 if(keybind.getId().equals(target.getTargetId()))
                     listWidget.setSelectedEntry(listEntry);
             }
-            var holdModeButton = new ButtonWidget.Builder(target.getHoldText(),this::holdButton)
-                    .size(width-gap/2,20)
-                    .position(0,height-20-gap/2).build();
-            addDrawableChild(holdModeButton);
         }
 
         private void holdButton(ButtonWidget buttonWidget) {
