@@ -1,7 +1,7 @@
 package io.github.JumperOnJava.jjpizza;
 
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry;
 import net.fabricmc.api.ClientModInitializer;
 
 public class PizzeriaApi implements ClientModInitializer {

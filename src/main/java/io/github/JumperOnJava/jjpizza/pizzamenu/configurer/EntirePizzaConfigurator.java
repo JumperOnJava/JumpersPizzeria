@@ -1,7 +1,7 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.configurer;
 
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
-import io.github.JumperOnJava.jjpizza.pizzamenu.slices.RunnablePizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.RunnableSlice;
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import net.minecraft.client.gui.screen.Screen;
 
@@ -32,15 +32,15 @@ public class EntirePizzaConfigurator implements ConfigActionApplier {
         CircleSlice circleSlice = clickedSlice.getSlice();
         //slice.
         originalSlices.remove(clickedSlice);
-        originalSlices.add(new RunnablePizzaSlice("Empty action", new CircleSlice(circleSlice.startAngle, circleSlice.getMidAngle()),clickedSlice.getManager()));
-        originalSlices.add(new RunnablePizzaSlice("Empty action", new CircleSlice(circleSlice.getMidAngle(), circleSlice.endAngle),clickedSlice.getManager()));
+        originalSlices.add(new RunnableSlice("Empty action", new CircleSlice(circleSlice.startAngle, circleSlice.getMidAngle()),clickedSlice.getManager()));
+        originalSlices.add(new RunnableSlice("Empty action", new CircleSlice(circleSlice.getMidAngle(), circleSlice.endAngle),clickedSlice.getManager()));
         rebuildSlices();
     }
     @Override
     public void removeSlice(ConfigurablePizzaSlice targetAction) {
         originalSlices.remove(originalSlices.indexOf(targetAction));
         if(originalSlices.size()==0){
-            originalSlices.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(0.125f,0.375f),targetAction.getManager()));
+            originalSlices.add(new RunnableSlice("Empty action", CircleSlice.percent(0.125f,0.375f),targetAction.getManager()));
         }
         rebuildSlices();
     }

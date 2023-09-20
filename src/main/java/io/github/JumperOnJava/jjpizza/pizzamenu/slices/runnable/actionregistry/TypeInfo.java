@@ -1,4 +1,4 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry;
 
 import com.google.gson.TypeAdapter;
 import org.jetbrains.annotations.NotNull;

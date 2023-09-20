@@ -1,11 +1,11 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders;
 
 import fi.dy.masa.malilib.event.InputEventHandler;
 import fi.dy.masa.malilib.hotkeys.IHotkey;
 import fi.dy.masa.malilib.hotkeys.KeyAction;
 import fi.dy.masa.malilib.hotkeys.KeybindCategory;
 import fi.dy.masa.malilib.hotkeys.KeybindMulti;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
@@ -39,10 +39,12 @@ public class MalilibActionProvider implements ConfigurableRunnable, TargetKeybin
     }
     @Override
     public void run() {
-        var targetKeyBinding = getTargetKeyBinding();
-        if(targetKeyBinding==null)
-            return;
-        ((KeybindMulti)targetKeyBinding.getKeybind()).getCallback().onKeyAction(keyActionType,targetKeyBinding.getKeybind());
+        try {
+            var targetKeyBinding = getTargetKeyBinding();
+            if (targetKeyBinding == null)
+                return;
+            ((KeybindMulti) targetKeyBinding.getKeybind()).getCallback().onKeyAction(keyActionType, targetKeyBinding.getKeybind());
+        }catch (Exception ignored){};
     }
     public List<TargetKeybind> getKeyBindings(){
         List<TargetKeybind> hotkeys = new LinkedList<>();

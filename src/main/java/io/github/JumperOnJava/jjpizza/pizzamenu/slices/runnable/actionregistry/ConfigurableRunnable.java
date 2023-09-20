@@ -1,4 +1,4 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry;
 
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import net.minecraft.client.gui.screen.Screen;

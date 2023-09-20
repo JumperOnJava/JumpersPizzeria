@@ -2,8 +2,8 @@ package io.github.JumperOnJava.jjpizza.pizzamenu;
 
 import com.google.gson.reflect.TypeToken;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
-import io.github.JumperOnJava.jjpizza.pizzamenu.slices.RunnablePizzaSlice;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.RunnableSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry;
 import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.EntirePizzaConfigurator;
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
 import io.github.JumperOnJava.lavajumper.common.Binder;
@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.*;
 
 public class PizzaManager {
-    List<RunnablePizzaSlice> actions = new ArrayList<>();
+    List<RunnableSlice> actions = new ArrayList<>();
     public final KeyBinding pizzaKeybind;
     public ActionTypeRegistry actionTypeRegistry = new ActionTypeRegistry();
     public PizzaManager(){
@@ -49,15 +49,15 @@ public class PizzaManager {
             e.printStackTrace();
         }
     }
-    public List<RunnablePizzaSlice> load(){
+    public List<RunnableSlice> load(){
         if(readConfig().equals("")){
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(0,.25f),this));
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.25f,.5f),this));
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.5f,.75f),this));
-            actions.add(new RunnablePizzaSlice("Empty action", CircleSlice.percent(.75f,1f),this));
+            actions.add(new RunnableSlice("Empty action", CircleSlice.percent(0,.25f),this));
+            actions.add(new RunnableSlice("Empty action", CircleSlice.percent(.25f,.5f),this));
+            actions.add(new RunnableSlice("Empty action", CircleSlice.percent(.5f,.75f),this));
+            actions.add(new RunnableSlice("Empty action", CircleSlice.percent(.75f,1f),this));
             save();
         }
-        List<RunnablePizzaSlice> l = actionTypeRegistry.getGson().fromJson(readConfig(),new TypeToken<ArrayList<RunnablePizzaSlice>>(){}.getType());
+        List<RunnableSlice> l = actionTypeRegistry.getGson().fromJson(readConfig(),new TypeToken<ArrayList<RunnableSlice>>(){}.getType());
         l.forEach(s->s.setManager(this));
         return l;
     }
@@ -72,7 +72,7 @@ public class PizzaManager {
 
     private void setSlices(List<ConfigurablePizzaSlice> configuration) {
         actions.clear();
-        configuration.forEach(pizzaSlice -> {if(pizzaSlice instanceof RunnablePizzaSlice runnablePizzaSlice) actions.add(runnablePizzaSlice);});
+        configuration.forEach(pizzaSlice -> {if(pizzaSlice instanceof RunnableSlice runnablePizzaSlice) actions.add(runnablePizzaSlice);});
         save();
     }
 }

@@ -1,14 +1,15 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry;
 
 import com.google.gson.*;
-import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.ChatMessageActionProvider;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.KeybindingActionProvider;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.MalilibActionProvider;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.NullActionProvider;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.ChatMessageActionProvider;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.KeybindingActionProvider;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.MalilibActionProvider;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.NullActionProvider;
 import io.github.JumperOnJava.lavajumper.LavaJumper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.MinecraftVersion;
+import net.minecraft.client.MinecraftClient;
 
 import java.lang.reflect.Type;
 import java.util.*;
@@ -19,8 +20,8 @@ public class ActionTypeRegistry{
     public ActionTypeRegistry(){
         typeFactories = new TreeSet<>();
         addActionType(KeybindingActionProvider::new,null);
-        if(FabricLoader.getInstance().isModLoaded("malilib"))
-        addActionType(MalilibActionProvider::new,null);
+        if(FabricLoader.getInstance().isModLoaded("malilib") && MinecraftVersion.create().isStable()) // lmao hack cause malilib is not released for 1.20.2 but somehow fabric loader thinks it exists
+            addActionType(MalilibActionProvider::new,null);
         addActionType(NullActionProvider::new,null);
         addActionType(ChatMessageActionProvider::new,null);
     }
@@ -90,7 +91,6 @@ public class ActionTypeRegistry{
             json.addProperty("RunnableType",src.getClass().getName());
             var elm = context.serialize(src,src.getClass());
             json.add("Object",elm);
-            LavaJumper.log("serializing");
             return json;
         }
     }

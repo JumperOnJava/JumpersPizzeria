@@ -1,7 +1,6 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders;
 
-import com.google.gson.annotations.Expose;
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import net.minecraft.client.MinecraftClient;
@@ -9,7 +8,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
-import static io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry.gap;
+import static io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry.gap;
 
 
 public class ChatMessageActionProvider implements ConfigurableRunnable {

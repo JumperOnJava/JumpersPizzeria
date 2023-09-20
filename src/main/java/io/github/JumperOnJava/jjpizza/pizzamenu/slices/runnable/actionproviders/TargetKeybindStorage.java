@@ -1,4 +1,4 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders;
 
 import net.minecraft.text.Text;
 

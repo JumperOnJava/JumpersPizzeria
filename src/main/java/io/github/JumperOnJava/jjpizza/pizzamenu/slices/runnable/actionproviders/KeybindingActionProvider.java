@@ -1,7 +1,8 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders;
+package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders;
 
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ConfigurableRunnable;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.gui.widgets.ScrollListWidget;
 import net.minecraft.client.MinecraftClient;
@@ -12,8 +13,6 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.Text;
 import java.util.*;
-
-import static io.github.JumperOnJava.jjpizza.pizzamenu.actionregistry.ActionTypeRegistry.gap;
 
 public class KeybindingActionProvider implements ConfigurableRunnable, TargetKeybindStorage {
     public static Set<String> awaitingMatch = new HashSet<>();
@@ -124,8 +123,8 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
             addDrawableChild(listWidget);
             rebuildList(listWidget,"");
             var holdModeButton = new ButtonWidget.Builder(target.getHoldText(),this::holdButton)
-                    .size(width-gap/2,20)
-                    .position(0,height-20-gap/2).build();
+                    .size(width- ActionTypeRegistry.gap/2,20)
+                    .position(0,height-20- ActionTypeRegistry.gap/2).build();
             addDrawableChild(holdModeButton);
         }
 
@@ -141,7 +140,7 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
                 var activateButton = new ButtonWidget.Builder(buttonText,b->{
                     listEntry.setMeActive();
                     target.setTargetID(keybind.getId());
-                }).width(width-gap).build();
+                }).width(width- ActionTypeRegistry.gap).build();
                 listEntry.addDrawableChild(activateButton,true);
                 if(keybind.getId().equals(target.getTargetId()))
                     listWidget.setSelectedEntry(listEntry);

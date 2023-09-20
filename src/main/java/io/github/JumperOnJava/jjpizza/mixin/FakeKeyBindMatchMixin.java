@@ -1,6 +1,6 @@
 package io.github.JumperOnJava.jjpizza.mixin;
 
-import io.github.JumperOnJava.jjpizza.pizzamenu.actionproviders.KeybindingActionProvider;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.KeybindingActionProvider;
 import net.minecraft.client.option.KeyBinding;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
