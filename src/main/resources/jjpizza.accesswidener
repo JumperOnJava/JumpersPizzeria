@@ -3,5 +3,4 @@ accessible field net/minecraft/client/option/KeyBinding timesPressed I
 accessible method net/minecraft/client/option/KeyBinding reset ()V
 accessible field net/minecraft/client/gui/screen/Screen drawables Ljava/util/List;
 accessible field net/minecraft/client/texture/TextureManager textures Ljava/util/Map;
-accessible field io/github/JumperOnJava/lavajumper/gui/SubScreen screen Lnet/minecraft/client/gui/screen/Screen;
 accessible method net/minecraft/client/gui/screen/Screen remove (Lnet/minecraft/client/gui/Element;)V

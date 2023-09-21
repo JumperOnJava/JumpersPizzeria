@@ -1,9 +1,9 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.configurer;
 
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
-import io.github.JumperOnJava.lavajumper.gui.SubScreen;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
 import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaWidget;
+import io.github.JumperOnJava.lavajumper.gui.widgets.SubScreen;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;

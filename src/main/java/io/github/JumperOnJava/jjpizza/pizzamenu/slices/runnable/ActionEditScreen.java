@@ -1,6 +1,6 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable;
 
-import io.github.JumperOnJava.lavajumper.gui.SubScreen;
+import io.github.JumperOnJava.lavajumper.gui.widgets.SubScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;

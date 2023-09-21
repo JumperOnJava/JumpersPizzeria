@@ -7,7 +7,7 @@ import io.github.JumperOnJava.lavajumper.datatypes.Angle;
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.AskScreen;
 import io.github.JumperOnJava.lavajumper.gui.AskScreenManager;
-import io.github.JumperOnJava.lavajumper.gui.SubScreen;
+import io.github.JumperOnJava.lavajumper.gui.widgets.SubScreen;
 import io.github.JumperOnJava.lavajumper.gui.TextureListAsk;
 import io.github.JumperOnJava.lavajumper.gui.widgets.SliderWidget;
 import net.minecraft.client.gui.DrawContext;
@@ -113,8 +113,8 @@ public class RunnableScreen extends Screen {
                 Translation.get("jjpizza.runnable.iconselect"), b -> {
             AskScreenManager.ask(
                     new TextureListAsk.Builder()
-                            .onSuccess(ActionTextRenderer::sendChatMessage)
-                            .onFail(()->ActionTextRenderer.sendChatMessage("fail"))
+                            .onSuccess(i->iconField.setText(i.toString()))
+                            .onFail(()->{})
                             .build()
             );
         }

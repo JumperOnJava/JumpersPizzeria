@@ -15,5 +15,9 @@
   "jjpizza.keybind.mali.hold.PRESS": "Press",
   "jjpizza.actions.MalilibActionProvider": "Malilib Keybind",
   "jjpizza.keybind.mali.hold.BOTH": "Press and release",
-  "jjpizza.keybind.mali.hold.RELEASE": "Release"
+  "jjpizza.keybind.mali.hold.RELEASE": "Release",
+  "jjpizza.texture.cancel": "Cancel",
+  "jjpizza.runnable.iconselect": "Select icon",
+  "jjpizza.texture.accept": "Accept",
+  "jjpizza.texture.selected" : "Selected texture"
 }
