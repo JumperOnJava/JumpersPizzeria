@@ -16,12 +16,12 @@ public class ActionTypeRegistry{
     public static final int gap = 4;
     public ActionTypeRegistry(){
         typeFactories = new TreeSet<>();
-        addActionType(KeybindingActionProvider::new,null);
+        addActionType(NullActionProvider::new,null);
+        addActionType(SubPizzaScreenActionProvider::new,null);
+        addActionType(ChatMessageActionProvider::new,null);
         if(FabricLoader.getInstance().isModLoaded("malilib") && MinecraftVersion.create().isStable()) // lmao hack cause malilib is not released for 1.20.2 but somehow fabric loader thinks it exists
             addActionType(MalilibActionProvider::new,null);
-        addActionType(ChatMessageActionProvider::new,null);
-        addActionType(SubPizzaScreenActionProvider::new,null);
-        addActionType(NullActionProvider::new,null);
+        addActionType(KeybindingActionProvider::new,null);
     }
     private final Set<TypeInfo> typeFactories;
     private List<TypeInfo> asList(){

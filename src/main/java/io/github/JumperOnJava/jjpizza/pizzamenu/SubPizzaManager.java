@@ -3,13 +3,14 @@ package io.github.JumperOnJava.jjpizza.pizzamenu;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
+import java.util.Objects;
 
 public class SubPizzaManager extends PizzaManager{
     public final String id;
 
     public SubPizzaManager(String id) {
-        super();
         this.id = id;
+        init();
     }
 
     @Override

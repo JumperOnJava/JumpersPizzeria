@@ -10,7 +10,7 @@ import java.io.File;
 public class MainPizzaManager extends PizzaManager {
     public final KeyBinding pizzaKeybind;
     public MainPizzaManager() {
-        super();
+        init();
         pizzaKeybind = Binder.addBind("Open Pizza Menu",-1,this::openPizza);
     }
 

@@ -39,13 +39,10 @@ public class EntirePizzaConfiguratorScreen extends AskScreen<List<ConfigurablePi
         for(var t : input){
             editSlices.add(t.copy());
         }
-        //this.configurator = new EntirePizzaConfigurator(input,(e)->{});
-        //this.deleteSlices = deleteSlices;
         this.widgetSlices = new LinkedList<>();
         this.deleteSlices = new LinkedList<>();
         pizza = new PizzaWidget();
         deletePizza = new PizzaWidget();
-        //this.saveCallback=exitCallback;
     }
     Runnable saveCallback;
 
@@ -96,10 +93,11 @@ public class EntirePizzaConfiguratorScreen extends AskScreen<List<ConfigurablePi
         pizza.setupSlices(widgetSlices);
     }
     public void init(){
-        var radius = (int) (Math.min(width/4,height/2)*.8);
-        pizza.setupSize(radius,radius/8,width/4,height/2);
+        var radius = (Math.min(width/4,height/2)*.8);
+        pizza.setupSize((int) radius, (int) (radius/4),width/4,height/2);
         pizza.setupSlices(widgetSlices);
-        deletePizza.setupSize(radius/16*17,radius,width/4,height/2);
+        //deletePizza.setupSize((int) (radius/16*17), (int) radius,width/4,height/2);
+        deletePizza.setupSize((int) (radius/4), (int) radius/8,width/4,height/2);
         deletePizza.setupSlices(deleteSlices);
         addDrawableChild(pizza);
         addDrawableChild(deletePizza);

@@ -8,6 +8,7 @@ import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.A
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
 import io.github.JumperOnJava.lavajumper.common.Binder;
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
+import io.github.JumperOnJava.lavajumper.gui.AskScreen;
 import io.github.JumperOnJava.lavajumper.gui.AskScreenManager;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
@@ -17,22 +18,24 @@ import net.minecraft.client.option.KeyBinding;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.*;
+import java.util.function.Consumer;
 
 public abstract class PizzaManager {
     List<RunnableSlice> actions = new ArrayList<>();
     public static ActionTypeRegistry actionTypeRegistry = new ActionTypeRegistry();
-    public PizzaManager(){
+    public void init(){
         actions = load();
     }
 
     public void openPizza(MinecraftClient client){
-        //this.slices = new PizzaConfiguration(actions);
-
         client.setScreen(new PizzaScreen(actions,getBuilderScreen(),this));
     }
 
-    public Screen getBuilderScreen(){
+    public AskScreen<List<ConfigurablePizzaSlice>> getBuilderScreen(){
         return new EntirePizzaConfiguratorScreen(new LinkedList<>(actions),this::setSlices,()->{});
+    }
+    public AskScreen<List<ConfigurablePizzaSlice>> getBuilderScreen(Consumer<List<ConfigurablePizzaSlice>> onSuccess, Runnable onFail){
+        return new EntirePizzaConfiguratorScreen(new LinkedList<>(actions),(c)->{this.setSlices(c);onSuccess.accept(c);},onFail);
     }
     public void save(){
         /*var l = new LinkedList<RunnablePizzaSlice>();
