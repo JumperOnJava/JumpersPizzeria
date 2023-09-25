@@ -37,6 +37,18 @@ public class RunnableSlice implements ConfigurablePizzaSlice {
     public void setManager(PizzaManager manager){
         this.manager=manager;
     }
+
+    @Override
+    public ConfigurablePizzaSlice copy() {
+        var newSlice = new RunnableSlice(this.name,this.circleSlice,manager);
+        newSlice.circleSlice = new CircleSlice(circleSlice.startAngle,circleSlice.endAngle);
+        newSlice.icon=this.icon;
+        newSlice.onLeftClick = this.onLeftClick.copy();
+        newSlice.onRightClick = this.onRightClick.copy();
+        newSlice.color=this.color;
+        return newSlice;
+    }
+
     transient PizzaManager manager;
 
 

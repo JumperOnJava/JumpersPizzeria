@@ -37,6 +37,15 @@ public class MalilibActionProvider implements ConfigurableRunnable, TargetKeybin
     public Screen getConfiguratorScreen() {
         return new KeybindingActionProvider.KeyBindingEditScreen(this);
     }
+
+    @Override
+    public ConfigurableRunnable copy() {
+        var ml = new MalilibActionProvider(false);
+        ml.keyActionType=this.keyActionType;
+        ml.targetKeyBindingID=new String(targetKeyBindingID);
+        return ml;
+    }
+
     @Override
     public void run() {
         try {

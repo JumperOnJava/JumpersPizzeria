@@ -12,6 +12,8 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.Text;
+
+import java.security.Key;
 import java.util.*;
 
 public class KeybindingActionProvider implements ConfigurableRunnable, TargetKeybindStorage {
@@ -38,6 +40,15 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
     public Screen getConfiguratorScreen() {
         return new KeyBindingEditScreen(this);
     }
+
+    @Override
+    public ConfigurableRunnable copy() {
+        var kb = new KeybindingActionProvider(true);
+        kb.hold=hold;
+        kb.targetKeyBindingID=new String(targetKeyBindingID);
+        return kb;
+    }
+
     @Override
     public void run() {
         var targetKeyBinding = getTargetKeyBinding();

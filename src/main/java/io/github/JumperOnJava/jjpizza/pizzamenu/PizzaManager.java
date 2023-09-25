@@ -1,13 +1,14 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu;
 
 import com.google.gson.reflect.TypeToken;
+import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.EntirePizzaConfiguratorScreen;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.RunnableSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry;
-import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.EntirePizzaConfigurator;
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
 import io.github.JumperOnJava.lavajumper.common.Binder;
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
+import io.github.JumperOnJava.lavajumper.gui.AskScreenManager;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -17,23 +18,21 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.*;
 
-public class PizzaManager {
+public abstract class PizzaManager {
     List<RunnableSlice> actions = new ArrayList<>();
-    public final KeyBinding pizzaKeybind;
-    public ActionTypeRegistry actionTypeRegistry = new ActionTypeRegistry();
+    public static ActionTypeRegistry actionTypeRegistry = new ActionTypeRegistry();
     public PizzaManager(){
-        pizzaKeybind = Binder.addBind("Open Pizza Menu",-1,this::openPizza);
         actions = load();
     }
 
     public void openPizza(MinecraftClient client){
         //this.slices = new PizzaConfiguration(actions);
+
         client.setScreen(new PizzaScreen(actions,getBuilderScreen(),this));
     }
 
     public Screen getBuilderScreen(){
-        var configurator = new EntirePizzaConfigurator(new LinkedList<>(actions),this::setSlices);
-        return configurator.configuratorScreen;
+        return new EntirePizzaConfiguratorScreen(new LinkedList<>(actions),this::setSlices,()->{});
     }
     public void save(){
         /*var l = new LinkedList<RunnablePizzaSlice>();
@@ -66,15 +65,15 @@ public class PizzaManager {
         return FileReadWrite.read(getConfigFile());
     }
 
-    private File getConfigFile() {
-        return FabricLoader.getInstance().getConfigDir().resolve("jjpizza/main.json").toFile();
-    }
+    protected abstract File getConfigFile();
 
     private void setSlices(List<ConfigurablePizzaSlice> configuration) {
         actions.clear();
         configuration.forEach(pizzaSlice -> {if(pizzaSlice instanceof RunnableSlice runnablePizzaSlice) actions.add(runnablePizzaSlice);});
         save();
     }
+
+    public abstract boolean matchesKey(int keyCode, int scanCode);
 }
 
 

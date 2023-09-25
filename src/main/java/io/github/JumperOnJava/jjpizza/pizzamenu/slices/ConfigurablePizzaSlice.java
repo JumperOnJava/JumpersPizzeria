@@ -9,4 +9,5 @@ public interface ConfigurablePizzaSlice extends PizzaSlice {
 
     PizzaManager getManager();
     void setManager(PizzaManager manager);
+    ConfigurablePizzaSlice copy();
 }

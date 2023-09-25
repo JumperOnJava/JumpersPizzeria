@@ -6,6 +6,7 @@ import io.github.JumperOnJava.lavajumper.common.Translation;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.network.message.SentMessage;
 import net.minecraft.text.Text;
 
 import static io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry.gap;
@@ -25,6 +26,13 @@ public class ChatMessageActionProvider implements ConfigurableRunnable {
     @Override
     public Screen getConfiguratorScreen() {
         return new ChatMessageEditScreen(this);
+    }
+
+    @Override
+    public ConfigurableRunnable copy() {
+        var cm = new ChatMessageActionProvider(true);
+        cm.message = new String(this.message);
+        return cm;
     }
 
     @Override

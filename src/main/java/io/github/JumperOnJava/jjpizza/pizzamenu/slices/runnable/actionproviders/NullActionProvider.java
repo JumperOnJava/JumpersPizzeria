@@ -27,4 +27,8 @@ public class NullActionProvider implements ConfigurableRunnable {
 
     }
 
+    @Override
+    public ConfigurableRunnable copy() {
+        return this;
+    }
 }

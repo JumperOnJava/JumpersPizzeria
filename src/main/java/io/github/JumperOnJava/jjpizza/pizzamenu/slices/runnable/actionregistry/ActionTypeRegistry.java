@@ -2,10 +2,7 @@ package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry;
 
 import com.google.gson.*;
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
-import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.ChatMessageActionProvider;
-import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.KeybindingActionProvider;
-import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.MalilibActionProvider;
-import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.NullActionProvider;
+import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.*;
 import io.github.JumperOnJava.lavajumper.LavaJumper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.MinecraftVersion;
@@ -22,8 +19,9 @@ public class ActionTypeRegistry{
         addActionType(KeybindingActionProvider::new,null);
         if(FabricLoader.getInstance().isModLoaded("malilib") && MinecraftVersion.create().isStable()) // lmao hack cause malilib is not released for 1.20.2 but somehow fabric loader thinks it exists
             addActionType(MalilibActionProvider::new,null);
-        addActionType(NullActionProvider::new,null);
         addActionType(ChatMessageActionProvider::new,null);
+        addActionType(SubPizzaScreenActionProvider::new,null);
+        addActionType(NullActionProvider::new,null);
     }
     private final Set<TypeInfo> typeFactories;
     private List<TypeInfo> asList(){

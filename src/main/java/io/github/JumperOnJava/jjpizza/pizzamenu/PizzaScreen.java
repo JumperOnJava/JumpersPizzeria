@@ -47,7 +47,7 @@ public class PizzaScreen extends Screen {
     private boolean releasedOnce=false;
     @Override
     public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
-        if(manager.pizzaKeybind.matchesKey(keyCode,scanCode) && !releasedOnce) {
+        if(manager.matchesKey(keyCode,scanCode) && !releasedOnce) {
             clickAtMouse();
         }
         if(!releasedOnce)
@@ -64,7 +64,7 @@ public class PizzaScreen extends Screen {
     public boolean keyPressed(int keyCode,int scanCode, int modifiers){
         if(!releasedOnce)
             return false;
-        if(manager.pizzaKeybind.matchesKey(keyCode,scanCode)){
+        if(manager.matchesKey(keyCode,scanCode)){
             clickAtMouse();
             this.close();
             return true;
