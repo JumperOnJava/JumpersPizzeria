@@ -112,7 +112,7 @@ public class EntirePizzaConfiguratorScreen extends AskScreen<List<ConfigurablePi
         sliceConfiguratorSubScreen.setScreen(screen);
     }
     public void render(DrawContext context, int mouseX, int mouseY, float delta){
-        renderBackground(context, mouseX, mouseY, delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
     }
     public void setSliceConfigScreen(Screen screen) {
