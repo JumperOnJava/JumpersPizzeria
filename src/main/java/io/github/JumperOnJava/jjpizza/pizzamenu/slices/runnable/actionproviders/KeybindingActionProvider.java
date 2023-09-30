@@ -18,7 +18,7 @@ import java.util.*;
 
 public class KeybindingActionProvider implements ConfigurableRunnable, TargetKeybindStorage {
     public static Set<String> awaitingMatch = new HashSet<>();
-    private String targetKeyBindingID = null;
+    private String targetKeyBindingID = "";
     private boolean hold = false;
     private transient ConfigurablePizzaSlice parent;
 
@@ -45,6 +45,8 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
     public ConfigurableRunnable copy() {
         var kb = new KeybindingActionProvider(true);
         kb.hold=hold;
+        if(targetKeyBindingID == null)
+            targetKeyBindingID = "";
         kb.targetKeyBindingID=new String(targetKeyBindingID);
         return kb;
     }

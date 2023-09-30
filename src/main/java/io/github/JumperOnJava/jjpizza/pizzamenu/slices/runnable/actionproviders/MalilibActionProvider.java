@@ -14,7 +14,7 @@ import java.util.*;
 
 public class MalilibActionProvider implements ConfigurableRunnable, TargetKeybindStorage {
     public static Set<String> awaitingMatch = new HashSet<>();
-    private String targetKeyBindingID = null;
+    private String targetKeyBindingID = "";
     private KeyAction keyActionType = KeyAction.BOTH;
 
     public MalilibActionProvider(Boolean isReal) {
