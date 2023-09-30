@@ -19,7 +19,7 @@ public class ActionTypeRegistry{
         addActionType(NullActionProvider::new,null);
         addActionType(SubPizzaScreenActionProvider::new,null);
         addActionType(ChatMessageActionProvider::new,null);
-        if(FabricLoader.getInstance().isModLoaded("malilib") && MinecraftVersion.create().isStable()) // lmao hack cause malilib is not released for 1.20.2 but somehow fabric loader thinks it exists
+        if(FabricLoader.getInstance().isModLoaded("malilib")) // lmao hack cause malilib is not released for 1.20.2 but somehow fabric loader thinks it exists
             addActionType(MalilibActionProvider::new,null);
         addActionType(KeybindingActionProvider::new,null);
     }
