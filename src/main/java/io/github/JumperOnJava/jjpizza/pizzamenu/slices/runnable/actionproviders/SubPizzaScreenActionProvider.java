@@ -82,8 +82,10 @@ public class SubPizzaScreenActionProvider implements ConfigurableRunnable {
         }
 
         private void updateList() {
-            var files = FabricLoader.getInstance().getConfigDir().resolve("jjpizza/sub").toFile().listFiles();
             FileReadWrite.write(FabricLoader.getInstance().getConfigDir().resolve("jjpizza/sub/hackfile.txt").toFile(),"borgir");
+            var files = FabricLoader.getInstance().getConfigDir().resolve("jjpizza/sub").toFile().listFiles();
+            if(files == null)
+                return;
             list.children().clear();
             for(var file : files){
                 if(!file.getName().endsWith(".json"))
