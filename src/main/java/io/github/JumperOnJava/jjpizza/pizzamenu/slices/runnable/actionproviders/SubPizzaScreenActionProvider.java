@@ -76,7 +76,7 @@ public class SubPizzaScreenActionProvider implements ConfigurableRunnable {
                     .dimensions(width/2+gap/2,gap/2,width/2-gap,20)
                     .build();
             addDrawableChild(button);
-            this.list = new ScrollListWidget(client,width-gap,height-gap,gap/2,20+gap/2,20+gap/2);
+            this.list = new ScrollListWidget(client,width-gap,height-gap-2,gap/2,22+gap/2,20+gap/2);
             addDrawableChild(list);
             updateList();
         }

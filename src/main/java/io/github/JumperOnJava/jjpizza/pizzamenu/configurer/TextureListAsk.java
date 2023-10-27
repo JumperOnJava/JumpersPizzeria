@@ -1,6 +1,7 @@
-package io.github.JumperOnJava.lavajumper.gui;
+package io.github.JumperOnJava.jjpizza.pizzamenu.configurer;
 
 import io.github.JumperOnJava.lavajumper.common.Translation;
+import io.github.JumperOnJava.lavajumper.gui.AskScreen;
 import io.github.JumperOnJava.lavajumper.gui.widgets.ScrollListWidget;
 import io.github.JumperOnJava.lavajumper.gui.widgets.TextureWidget;
 import net.minecraft.client.MinecraftClient;
@@ -16,7 +17,7 @@ import java.util.function.Consumer;
 
 import static io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry.gap;
 
-public class TextureListAsk extends AskScreen<Identifier>{
+public class TextureListAsk extends AskScreen<Identifier> {
     ScrollListWidget list;
     //private static Map<Identifier, AbstractTexture> textures;
     private static java.util.List<Identifier> textures = new LinkedList<>();
@@ -104,8 +105,7 @@ public class TextureListAsk extends AskScreen<Identifier>{
                 true);
     }
 
-    public
-    static class Builder extends AskScreen.Builder<Identifier>{
+    public static class Builder extends AskScreen.Builder<Identifier>{
         @Override
         public TextureListAsk build() {
             return new TextureListAsk(onSuccess,onFail);

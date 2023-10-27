@@ -1,5 +1,6 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable;
 
+import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.TextureListAsk;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.common.actiontext.ActionTextRenderer;
@@ -8,7 +9,6 @@ import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.AskScreen;
 import io.github.JumperOnJava.lavajumper.gui.AskScreenManager;
 import io.github.JumperOnJava.lavajumper.gui.widgets.SubScreen;
-import io.github.JumperOnJava.lavajumper.gui.TextureListAsk;
 import io.github.JumperOnJava.lavajumper.gui.widgets.SliderWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
