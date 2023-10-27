@@ -1,9 +1,9 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.configurer;
 
+import io.github.JumperOnJava.jjpizza.pizzamenu.widgets.TextureWidget;
 import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.gui.AskScreen;
 import io.github.JumperOnJava.lavajumper.gui.widgets.ScrollListWidget;
-import io.github.JumperOnJava.lavajumper.gui.widgets.TextureWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -47,7 +47,7 @@ public class TextureListAsk extends AskScreen<Identifier> {
 
     private Identifier selectedTexture = new Identifier("minecraft","empty");
 
-    private TextureListAsk(Consumer<Identifier> onSuccess, Runnable onFail){
+    protected TextureListAsk(Consumer<Identifier> onSuccess, Runnable onFail){
         super(onSuccess, onFail);
     }
     private TextureWidget selectedTextureWidget;

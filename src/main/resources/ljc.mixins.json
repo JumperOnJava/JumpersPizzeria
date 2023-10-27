@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.JumperOnJava.lavajumper.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "ScissorMixin",
+    "ScreenIgnoreRenderAfterOverlayMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,6 +1,6 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.widgets.pizza;
 
-import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
+import io.github.JumperOnJava.jjpizza.datatypes.CircleSlice;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;

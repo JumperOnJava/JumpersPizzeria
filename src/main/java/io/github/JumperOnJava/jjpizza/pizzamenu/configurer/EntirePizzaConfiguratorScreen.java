@@ -1,12 +1,12 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.configurer;
 
+import io.github.JumperOnJava.jjpizza.datatypes.CircleSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.RunnableSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.widgets.pizza.PizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.widgets.pizza.PizzaWidget;
 import io.github.JumperOnJava.lavajumper.common.Translation;
-import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.AskScreen;
-import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
-import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaWidget;
 import io.github.JumperOnJava.lavajumper.gui.widgets.SubScreen;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -21,10 +21,10 @@ import static io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionreg
 public class EntirePizzaConfiguratorScreen extends AskScreen<List<ConfigurablePizzaSlice>> implements ConfigActionApplier  {
     private final List<EditorPizzaSlice> widgetSlices;
     private final List<PizzaSlice> deleteSlices;
-    private final SubScreen sliceConfiguratorSubScreen = new SubScreen();
     private final PizzaWidget pizza;
     private final PizzaWidget deletePizza;
     private final LinkedList<ConfigurablePizzaSlice> editSlices;
+    private SubScreen subScreen;
 
     public void rebuildSlices() {
         var l = new LinkedList<EditorPizzaSlice>();
@@ -101,7 +101,8 @@ public class EntirePizzaConfiguratorScreen extends AskScreen<List<ConfigurablePi
         deletePizza.setupSlices(deleteSlices);
         addDrawableChild(pizza);
         addDrawableChild(deletePizza);
-        addDrawableChild(sliceConfiguratorSubScreen.init(width/2,0,width/2,height));
+        this.subScreen = new SubScreen(width/2,0,width/2,height).setScreen(null);
+        addDrawableChild(subScreen);
         var hwidth = width/2;
         addDrawableChild(new ButtonWidget.Builder(Translation.get("jjpizza.edit.save"),b->this.success(editSlices)).dimensions(gap/2,height-20-gap/2,hwidth/2-gap,20).build());
         addDrawableChild(new ButtonWidget.Builder(Translation.get("jjpizza.edit.cancel"),b->this.fail()).dimensions(gap/2+hwidth/2,height-20-gap/2,hwidth/2-gap,20).build());
@@ -109,7 +110,7 @@ public class EntirePizzaConfiguratorScreen extends AskScreen<List<ConfigurablePi
     }
 
     public void setSliceConfiguratorScreen(Screen screen){
-        sliceConfiguratorSubScreen.setScreen(screen);
+        this.subScreen.setScreen(screen);
     }
     public void render(DrawContext context, int mouseX, int mouseY, float delta){
         renderBackground(context, mouseX, mouseY, delta);

@@ -1,9 +1,8 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.widgets.pizza;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.JumperOnJava.lavajumper.datatypes.Angle;
-import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
-import io.github.JumperOnJava.lavajumper.gui.HoverManager;
+import io.github.JumperOnJava.jjpizza.datatypes.Angle;
+import io.github.JumperOnJava.jjpizza.datatypes.CircleSlice;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;

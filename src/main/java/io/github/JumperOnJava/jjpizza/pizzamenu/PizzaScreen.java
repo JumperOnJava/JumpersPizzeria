@@ -1,8 +1,8 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu;
 
+import io.github.JumperOnJava.jjpizza.pizzamenu.widgets.pizza.PizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.widgets.pizza.PizzaWidget;
 import io.github.JumperOnJava.lavajumper.common.Translation;
-import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
-import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaWidget;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Keyboard;
 import net.minecraft.client.MinecraftClient;

@@ -1,12 +1,12 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable;
 
 import com.google.gson.annotations.Expose;
+import io.github.JumperOnJava.jjpizza.datatypes.Angle;
+import io.github.JumperOnJava.jjpizza.datatypes.CircleSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.NullActionProvider;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
-import io.github.JumperOnJava.lavajumper.datatypes.Angle;
-import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;

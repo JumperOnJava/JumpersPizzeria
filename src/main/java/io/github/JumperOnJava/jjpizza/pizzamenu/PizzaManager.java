@@ -1,15 +1,13 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu;
 
 import com.google.gson.reflect.TypeToken;
+import io.github.JumperOnJava.jjpizza.datatypes.CircleSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.EntirePizzaConfiguratorScreen;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.ConfigurablePizzaSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.RunnableSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry;
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
-import io.github.JumperOnJava.lavajumper.common.Binder;
-import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.AskScreen;
-import io.github.JumperOnJava.lavajumper.gui.AskScreenManager;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;

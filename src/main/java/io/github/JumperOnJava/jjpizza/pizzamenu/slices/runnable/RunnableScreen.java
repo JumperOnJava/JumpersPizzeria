@@ -1,13 +1,11 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable;
 
+import io.github.JumperOnJava.jjpizza.datatypes.Angle;
+import io.github.JumperOnJava.jjpizza.datatypes.CircleSlice;
 import io.github.JumperOnJava.jjpizza.pizzamenu.configurer.TextureListAsk;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ConfigurableRunnable;
 import io.github.JumperOnJava.lavajumper.common.Translation;
-import io.github.JumperOnJava.lavajumper.common.actiontext.ActionTextRenderer;
-import io.github.JumperOnJava.lavajumper.datatypes.Angle;
-import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.AskScreen;
-import io.github.JumperOnJava.lavajumper.gui.AskScreenManager;
 import io.github.JumperOnJava.lavajumper.gui.widgets.SubScreen;
 import io.github.JumperOnJava.lavajumper.gui.widgets.SliderWidget;
 import net.minecraft.client.gui.DrawContext;
@@ -42,8 +40,7 @@ public class RunnableScreen extends Screen {
     }
 
     private void initConfigSubScreens() {
-        var configScreen = new SubScreen();
-        configScreen.init(0, gap * 3 + 20 * 3, width, height - (gap * 3 + 20 * 2));
+        var configScreen = new SubScreen(0, gap * 3 + 20 * 3, width, height - (gap * 3 + 20 * 2));
         configScreen.setScreen(new ActionEditScreen(pizzaAction));
         addDrawableChild(configScreen);
     }
@@ -111,7 +108,7 @@ public class RunnableScreen extends Screen {
         addDrawableChild(iconField);
         var iconSelectField = new ButtonWidget.Builder(
                 Translation.get("jjpizza.runnable.iconselect"), b -> {
-            AskScreenManager.ask(
+            AskScreen.ask(
                     new TextureListAsk.Builder()
                             .onSuccess(i->iconField.setText(i.toString()))
                             .onFail(()->{})

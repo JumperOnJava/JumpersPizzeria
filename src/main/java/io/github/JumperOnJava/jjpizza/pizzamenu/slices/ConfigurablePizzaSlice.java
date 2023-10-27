@@ -1,7 +1,7 @@
 package io.github.JumperOnJava.jjpizza.pizzamenu.slices;
 
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
-import io.github.JumperOnJava.lavajumper.gui.widgets.PizzaSlice;
+import io.github.JumperOnJava.jjpizza.pizzamenu.widgets.pizza.PizzaSlice;
 import net.minecraft.client.gui.screen.Screen;
 
 public interface ConfigurablePizzaSlice extends PizzaSlice {

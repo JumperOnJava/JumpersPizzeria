@@ -129,7 +129,7 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
             this.target = target;
         }
         public void init(){
-            var listWidget = new ScrollListWidget(client,width,height-20,24,22);
+            var listWidget = new ScrollListWidget(client,width,height-20,0,24,22);
             var searchBox = new TextFieldWidget(client.textRenderer,2,2,width-4,20,Text.empty());
             searchBox.setChangedListener(t -> rebuildList(listWidget,t));
             addDrawableChild(searchBox);

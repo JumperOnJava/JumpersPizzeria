@@ -18,8 +18,7 @@ class ActionEditScreen extends Screen {
     @Override
     protected void init() {
 
-        var leftAction = new SubScreen();
-        leftAction.init(gap / 2, gap / 2 + 20, this.width / 2 - gap / 2, this.height - gap / 2 - 40);
+        var leftAction = new SubScreen(gap / 2, gap / 2 + 20, this.width / 2 - gap / 2, this.height - gap / 2 - 40);
         leftAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
         addDrawableChild(leftAction);
 
@@ -38,8 +37,7 @@ class ActionEditScreen extends Screen {
 
         ////////////////////////////////////
 
-        var rightAction = new SubScreen();
-        rightAction.init(this.width / 2 + gap / 2, gap / 2 + 20, this.width / 2 - gap / 2, this.height - gap / 2 - 40);
+        var rightAction = new SubScreen(this.width / 2 + gap / 2, gap / 2 + 20, this.width / 2 - gap / 2, this.height - gap / 2 - 40);
         rightAction.setScreen(pizzaAction.onLeftClick.getConfiguratorScreen());
         addDrawableChild(rightAction);
 

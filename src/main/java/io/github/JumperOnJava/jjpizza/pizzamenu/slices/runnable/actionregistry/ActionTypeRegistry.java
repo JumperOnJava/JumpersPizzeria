@@ -3,7 +3,6 @@ package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry;
 import com.google.gson.*;
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaManager;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders.*;
-import io.github.JumperOnJava.lavajumper.LavaJumper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.client.MinecraftClient;

@@ -3,11 +3,9 @@ package io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionproviders
 import io.github.JumperOnJava.jjpizza.pizzamenu.PizzaScreen;
 import io.github.JumperOnJava.jjpizza.pizzamenu.SubPizzaManager;
 import io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ConfigurableRunnable;
-import io.github.JumperOnJava.lavajumper.LavaJumper;
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
 import io.github.JumperOnJava.lavajumper.common.Translation;
-import io.github.JumperOnJava.lavajumper.common.actiontext.ActionTextRenderer;
-import io.github.JumperOnJava.lavajumper.gui.AskScreenManager;
+import io.github.JumperOnJava.lavajumper.gui.AskScreen;
 import io.github.JumperOnJava.lavajumper.gui.widgets.ScrollListWidget;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
@@ -97,7 +95,6 @@ public class SubPizzaScreenActionProvider implements ConfigurableRunnable {
                     nameBox.setText(target.id);
                 }).dimensions(gap/2,0,width-40-gap/2,20).build(),false);
                 entry.addDrawableChild(new ButtonWidget.Builder(Text.literal("X"),b->{
-                    LavaJumper.log(file.delete());
                     updateList();
                 }).dimensions(width-40+gap/2,0,20,20).build(),false);
                 list.addEntry(entry);
@@ -110,7 +107,7 @@ public class SubPizzaScreenActionProvider implements ConfigurableRunnable {
 
         private void editSelectedPizza(ButtonWidget buttonWidget) {
             target.makeSurePizzaExists();
-            AskScreenManager.ask(target.pizza.getBuilderScreen((c)->updateList(), this::updateList));
+            AskScreen.ask(target.pizza.getBuilderScreen((c)->updateList(), this::updateList));
         }
 
         private void updatePizzaId(String s) {
