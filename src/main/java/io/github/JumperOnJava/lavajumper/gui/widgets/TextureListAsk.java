@@ -1,55 +1,36 @@
-package io.github.JumperOnJava.jjpizza.pizzamenu.configurer;
+package io.github.JumperOnJava.lavajumper.gui.widgets;
 
-import io.github.JumperOnJava.jjpizza.pizzamenu.widgets.TextureWidget;
-import io.github.JumperOnJava.lavajumper.common.Translation;
 import io.github.JumperOnJava.lavajumper.gui.AskScreen;
-import io.github.JumperOnJava.lavajumper.gui.widgets.ScrollListWidget;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Consumer;
 
-import static io.github.JumperOnJava.jjpizza.pizzamenu.slices.runnable.actionregistry.ActionTypeRegistry.gap;
 
-public class TextureListAsk extends AskScreen<Identifier> {
+public abstract class TextureListAsk extends AskScreen<Identifier> {
     ScrollListWidget list;
     //private static Map<Identifier, AbstractTexture> textures;
-    private static java.util.List<Identifier> textures = new LinkedList<>();
-    static{
+    /*static{
         var paths = new LinkedList<String>();
-        paths.add("textures/item");
-        paths.add("textures/block");
-        paths.add("icon");
-        paths.add("icons");
-        paths.add("textures/particle");
-        paths.add("textures/painting");
-        paths.add("textures/mob_effect");
-        paths.add("textures/gui/sprites/hud/heart");
-        paths.add("textures/gui/sprites/icon");
-        paths.add("textures/gui/sprites/pending_invite");
-        paths.add("textures/gui/sprites/player_list");
-        paths.add("textures/gui/sprites/server_list");
-        paths.add("textures/gui/sprites/spectator");
-        paths.add("textures/gui/sprites/statistics");
         for(var path : paths)
         {
             var manager = MinecraftClient.getInstance().getResourceManager();
             var resources = manager.findResources(path,i-> i.toString().endsWith(".png"));
             textures.addAll(resources.keySet().stream().toList());
         }
-    }
+    }*/
 
     private Identifier selectedTexture = new Identifier("minecraft","empty");
+    public static final int gap = 2;
 
     protected TextureListAsk(Consumer<Identifier> onSuccess, Runnable onFail){
         super(onSuccess, onFail);
     }
+    public abstract List<Identifier> getTextures();
     private TextureWidget selectedTextureWidget;
     @Override
     protected void init() {
@@ -61,9 +42,9 @@ public class TextureListAsk extends AskScreen<Identifier> {
         search.setChangedListener(this::filterList);
         addDrawableChild(search);
 
-        var accept = new ButtonWidget.Builder(Translation.get("jjpizza.texture.accept"),b->success(selectedTexture))
+        var accept = new ButtonWidget.Builder(Text.translatable("ljc.textureselect.accept"),b->success(selectedTexture))
                 .dimensions((int) (40+gap),height-20-gap,100,20).build();
-        var cancel = new ButtonWidget.Builder(Translation.get("jjpizza.texture.cancel"),b->fail())
+        var cancel = new ButtonWidget.Builder(Text.translatable("ljc.textureselect.cancel"),b->fail())
                 .dimensions((int) (140+gap*1.5),height-20-gap,100,20).build();
         addDrawableChild(accept);
         addDrawableChild(cancel);
@@ -74,7 +55,7 @@ public class TextureListAsk extends AskScreen<Identifier> {
     private void filterList(String s) {
         list.children().clear();
         list.setScrollAmount(0);
-        for(var key : textures){
+        for(var key : getTextures()){
             var id = key.toString();
             if(!id.toLowerCase().contains(s.toLowerCase()))
                 continue;
@@ -94,21 +75,14 @@ public class TextureListAsk extends AskScreen<Identifier> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context, mouseX, mouseY, delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         context.drawText(
                 textRenderer,
-                Translation.get("jjpizza.texture.selected").append(": ").append(selectedTexture.toString()),
+                Text.translatable("jjpizza.texture.selected").append(": ").append(selectedTexture.toString()),
                 45,
                 height-30-6-gap/2,
                 0xFFFFFFFF,
                 true);
-    }
-
-    public static class Builder extends AskScreen.Builder<Identifier>{
-        @Override
-        public TextureListAsk build() {
-            return new TextureListAsk(onSuccess,onFail);
-        }
     }
 }
