@@ -129,11 +129,13 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
         }
         public void init(){
             var listWidget = new ScrollListWidget(client,width,height-24*2,0,24,22);
+            rebuildList(listWidget,"");
+            addDrawableChild(listWidget);
+            
             var searchBox = new TextFieldWidget(client.textRenderer,2,2,width-4,20,Text.empty());
             searchBox.setChangedListener(t -> rebuildList(listWidget,t));
             addDrawableChild(searchBox);
-            addDrawableChild(listWidget);
-            rebuildList(listWidget,"");
+            
             var holdModeButton = new ButtonWidget.Builder(target.getHoldText(),this::holdButton)
                     .size(width- ActionTypeRegistry.gap/2,20)
                     .position(0,height-20- ActionTypeRegistry.gap/2).build();
@@ -142,17 +144,21 @@ public class KeybindingActionProvider implements ConfigurableRunnable, TargetKey
 
         private void rebuildList(ScrollListWidget listWidget, String s) {
             listWidget.children().clear();
-            listWidget.setScrollAmount(0);
+            listWidget.setScrollY(0);
             for(TargetKeybind keybind : target.getKeyBindings()){
                 if(!keybind.matches(s))
                     continue;
                 var listEntry = new ScrollListWidget.ScrollListEntry();
                 listWidget.addEntry(listEntry);
+                
                 Text buttonText = keybind.getButtonText();
                 var activateButton = new ButtonWidget.Builder(buttonText,b->{
                     listEntry.setMeActive();
                     target.setTargetID(keybind.getId());
-                }).width(width- ActionTypeRegistry.gap).build();
+                })
+                    .width(width- 6 - ActionTypeRegistry.gap)
+                    .build();
+                
                 listEntry.addDrawableChild(activateButton,true);
                 if(keybind.getId().equals(target.getTargetId()))
                     listWidget.setSelectedEntry(listEntry);

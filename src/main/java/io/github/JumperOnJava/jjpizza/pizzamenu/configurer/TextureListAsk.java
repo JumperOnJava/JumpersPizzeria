@@ -66,13 +66,14 @@ public class TextureListAsk extends AskScreen<Identifier> {
                 .dimensions((int) (140+gap*1.5),height-20-gap,100,20).build();
         addDrawableChild(accept);
         addDrawableChild(cancel);
+        
         selectedTextureWidget = new TextureWidget(Identifier.of(""),gap/2,height-40-gap/2,40,40);
         addDrawableChild(selectedTextureWidget);
     }
 
     private void filterList(String s) {
         list.children().clear();
-        list.setScrollAmount(0);
+        list.setScrollY(0);
         for(var key : textures){
             var id = key.toString();
             if(!id.toLowerCase().contains(s.toLowerCase()))
@@ -81,9 +82,9 @@ public class TextureListAsk extends AskScreen<Identifier> {
                 this.selectedTexture = Identifier.of(b.getMessage().getString());
                 selectedTextureWidget.setTexture(selectedTexture);
             })
-                    .position(40,10)
-                    .size(width-40-6-gap,20)
-                    .build();
+                .position(40,10)
+                .width(width-40-6-gap)
+                .build();
             var entry = new ScrollListWidget.ScrollListEntry();
             entry.addDrawableChild(button,true);
             entry.addDrawableChild(new TextureWidget(key,0,0,40,40),false);
@@ -93,7 +94,6 @@ public class TextureListAsk extends AskScreen<Identifier> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         context.drawText(
                 textRenderer,
